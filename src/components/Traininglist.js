@@ -2,8 +2,8 @@ import React, { useState, useEffect} from 'react';
 import ReactTable from 'react-table-v6';
 import 'react-table-v6/react-table.css';
 import Button from '@material-ui/core/Button';
-import moment from 'moment';
-import AddTraining from './AddTraining';
+import moment from 'moment/min/moment-with-locales';
+
 
 export default function Traininglist(){
 
@@ -22,11 +22,11 @@ export default function Traininglist(){
         .then(data => setTrainings(data))
     }
 
-    const deleteTraining = (id) => {
+    const deleteTraining = (link) => {
 
         if(window.confirm('Are you sure?')){
 
-        fetch(id, {method: 'DELETE'})
+        fetch(link, {method: 'DELETE'})
         .then(res => fetchData())
         .catch(err => console.error(err))
 
@@ -39,8 +39,9 @@ export default function Traininglist(){
             {
                 id: 'date',
                 Header: 'Date',
-                accessor: d => {
-                    return moment(d.date).format("D.MM.YYYY hh:mm")
+                accessor: row => {
+                    moment.locale("fi");
+                    return moment(row.date).format('DD.MM.YYYY HH:mm')
                 }
                 
             },
@@ -56,15 +57,21 @@ export default function Traininglist(){
             },
 
             {
+                id: 'customer',
                 Header: 'Customer',
-                accessor: 'customer.firstname' 
+                accessor: row => {
+                    return row.customer.firstname + ' ' + row.customer.lastname
+                }
             },            
 
             {
+                id: 'link',
                 sortable: false,
                 filterable: false,
                 width: 100,
-                accessor: 'id',
+                accessor: row => {
+                    return "https://customerrest.herokuapp.com/api/trainings/" + row.id
+                },
                 Cell: row => <Button size= "small" variant="contained" color = "secondary" onClick={() => deleteTraining(row.value)}>Delete</Button>
                 
             }

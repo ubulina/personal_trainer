@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import AddCustomer from './AddCustomer';
 import AddTraining from './AddTraining';
 import EditCustomer from './EditCustomer';
+import moment from 'moment';
 
 
 export default function Customerlist(){
@@ -28,6 +29,7 @@ export default function Customerlist(){
 
     const deleteCustomer = (link) => {
 
+        
         if(window.confirm ('Are you sure?')){
 
         fetch(link, {method: 'DELETE'})
@@ -66,7 +68,36 @@ export default function Customerlist(){
         .catch(err => console.error(err))
     }
 
+    const addTraining = (training) => {
+        
+        fetch('https://customerrest.herokuapp.com/api/trainings', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "date": moment(training.date).toISOString(),
+                "activity": training.activity,
+                "duration": training.duration,
+                "customer": training.customer
+            })
+        })
+        .then(res => fetchData())
+        .catch(err => console.error(err))
+
+
+    }
+
+   
     const columns = [
+
+        {
+            sortable: false,
+            filterable: false,
+            
+            Cell: row => <AddTraining addTraining={addTraining} customer={row.original}/>
+            //siirretään asiakkaan tieto treeninlisäys-lomakkeelle
+        },
 
         {
             Header: 'Firstname',

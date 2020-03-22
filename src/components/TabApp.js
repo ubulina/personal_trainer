@@ -4,6 +4,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Customerlist from './Customerlist';
 import Traininglist from './Traininglist';
+import Calendar from './Calendar';
 
 const TabApp = () => {
 
@@ -25,7 +26,7 @@ const TabApp = () => {
             </ AppBar>
             {value=== 'one'&& <div><Customerlist/></div>}
             {value=== 'two'&& <div><Traininglist/></div>}
-            {value=== 'three'&& <div>Item Three</div>}
+            {value=== 'three'&& <div><Calendar/></div>}
 
         </div>
     );
