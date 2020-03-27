@@ -39,12 +39,12 @@ export default function AddTraining(props) {
   
   
     }
-
+    //lisätään asiakkaalle treeni
     const addTraining = () => {
 
         props.addTraining(training)
         handleClose()
-        //lisätään asiakkaalle treeni, onko oikea osoite?
+        
 
     }
 

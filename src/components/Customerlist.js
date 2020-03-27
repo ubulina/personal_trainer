@@ -30,7 +30,7 @@ export default function Customerlist(){
     const deleteCustomer = (link) => {
 
         
-        if(window.confirm ('Are you sure?')){
+        if(window.confirm ('You are deleting a customer. Are you sure?')){
 
         fetch(link, {method: 'DELETE'})
         .then(res => fetchData())

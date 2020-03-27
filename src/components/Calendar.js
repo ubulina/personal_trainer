@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from 'react';
 import {Calendar, Views, momentLocalizer } from 'react-big-calendar'
-//import moment from 'moment'
 import moment from 'moment/min/moment-with-locales';
 import style from 'react-big-calendar/lib/css/react-big-calendar.css';
 
