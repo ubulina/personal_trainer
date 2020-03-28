@@ -4,33 +4,6 @@ import moment from 'moment/min/moment-with-locales';
 import style from 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const localizer = momentLocalizer(moment);
-const allViews = Object.keys(Views).map(k => Views[k])
-
-const myEventsList = [
-
-    {
-        title: "02:00-06:59",
-        start: "2020-03-03 02:00",
-        end: "2020-03-03 06:59",
-        up_down_ind: "N"
-    },
-   
-    {
-        title: "07:00-23:59",
-        start: "2020-03-03 07:00",
-        end: "2020-03-03 23:59",
-        up_down_ind: "Y"
-    },
-    
-    {
-        title: "00:00-01:59",
-        start: "2020-03-04 00:00",
-        end: "2020-03-04 01:59",
-        up_down_ind: "Y"
-    },
-
-]
-
 
 export default function TrainingCalendar () {
 
